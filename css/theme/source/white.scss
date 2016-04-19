@@ -17,21 +17,20 @@
 
 // Override theme settings (see ../template/settings.scss)
 $backgroundColor: #fff;
-
+$linkColor: #2a76dd;
 $mainColor: #222;
-$headingColor: #222;
+$headingColor: #4F8ADA;
 
 $mainFontSize: 38px;
-$mainFont: 'Source Sans Pro', Helvetica, sans-serif;
-$headingFont: 'Source Sans Pro', Helvetica, sans-serif;
+$mainFont: 'Avenir', 'Source Sans Pro', sans-serif;
+$headingFont: 'Futura', 'Source Sans Pro', sans-serif;
 $headingTextShadow: none;
 $headingLetterSpacing: normal;
-$headingTextTransform: uppercase;
-$headingFontWeight: 600;
-$linkColor: #2a76dd;
+$headingTextTransform: normal;
+$headingFontWeight: 300;
+
 $linkColorHover: lighten( $linkColor, 15% );
 $selectionBackgroundColor: lighten( $linkColor, 25% );
-
 $heading1Size: 2.5em;
 $heading2Size: 1.6em;
 $heading3Size: 1.3em;
