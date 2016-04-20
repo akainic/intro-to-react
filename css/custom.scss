@@ -1,15 +1,25 @@
-.reveal .slides {
-	text-align: left;
-}
+.reveal {
+	.slides {
+		text-align: left;
+	}
 
-.reveal li {
-	line-height: 1.5em;
-}
+	li {
+		line-height: 1.5em;
+	}
 
-.reveal pre code {
-	max-height: 500px !important;
-}
+	pre code {
+		max-height: 500px !important;
+	}
 
-.javascript .xml {
-	opacity: 1 !important;
+	.javascript .xml {
+		opacity: 1 !important;
+	}
+
+	.title-page-blockquote {
+		background-color: #F3F7FB;
+		margin-top: 2em;
+		padding: 1em;
+		text-align: center;
+		width: 50%;
+	}
 }

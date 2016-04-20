@@ -1306,5 +1306,12 @@ html:-moz-full-screen-ancestor {
 .reveal pre code {
   max-height: 500px !important; }
 
-.javascript .xml {
+.reveal .javascript .xml {
   opacity: 1 !important; }
+
+.reveal .title-page-blockquote {
+  background-color: #F3F7FB;
+  margin-top: 2em;
+  padding: 1em;
+  text-align: center;
+  width: 50%; }

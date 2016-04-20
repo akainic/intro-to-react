@@ -34,64 +34,49 @@
 				<section>
 					<h1>Introduction to React</h1>
 					<h3>And how we're using it!</h3>
+					<blockquote class="title-page-blockquote" cite="https://facebook.github.io/react/index.html">“A JavaScript library for building user interfaces”</blockquote>
 				</section>
 
 				<section>
-					<h2>React</h2>
+					<h2>Why React?</h2>
+					<p><strong>Original plan</strong>: HTML with piecemeal JS</p>
+					<p><strong>Problems with original plan</strong>:</p>
 					<ul>
-						<li>"A JavaScript library for building user interfaces"</li>
-						<li>The V in MVC</li>
-						<li>Created by Facebook and Instagram</li>
+						<li>Piecemeal JS is messy and hard to reason about</li>
+						<li>Not DRY</li>
+					</ul>
+					<p><strong>How React solves those problems</strong>:</p>
+					<ul>
+						<li>Establishes conventions on how user interactions change rendered content</li>
+						<li>Makes code modular and reusable</li>
 					</ul>
 				</section>
 
 				<section>
-					<h2>Main React concepts</h2>
+					<h2>Main concepts</h2>
 					<ol>
 						<li>Components</li>
 						<li>JSX</li>
 						<li>State</li>
+						<li>Props</li>
 						<li>Data Flow</li>
+						<li>Redux</li>
 					</ol>
 				</section>
 
 				<section>
 					<h2>Components</h2>
+					<p>An abstraction of HTML and JS into reusable, composable units that define their own behavior and know how to render themselves.</p>
+					<p>Bundles together necessarily dependent behavior and display-logic.</p>
 					<p>The building blocks of your React UI.</p>
-					<p>Helps make your code modular and reusable.</p>
-					<p>Everything that receives data or responds to state changes should probably be a component:</p>
-					<ul>
-						<li>Form elements</li>
-						<li>Navigation elements</li>
-						<li>Search result lists</li>
-						<li>Comment box</li>
-						<li>Counter</li>
-					</ul>
-				</section>
-
-				<section>
-					<h2>Component Hierarchy</h2>
-					<p>Helps identify which components you'll need and how they'll be used.</p>
-					<p>HCA's component hierarchy:</p>
-					<pre><code class="hljs" data-trim contenteditable>
-- HealthCareApp
-  - Nav
-  - Section
-    - Questions
-      - Form elements
-    - Form elements
-  - ProgressButton
-					</code></pre>
+					<p>Everything that receives data or responds to state changes should probably be a component</p>
 				</section>
 
 				<section>
 					<h2>Component example</h2>
 					<pre><code class="hljs javascript" data-trim contenteditable>
 class ErrorableTextInput extends React.Component {
-  constructor() {
-    super();
-    this.handleChange = this.handleChange.bind(this);
-  }
+  /* other code */
 
   handleChange(domEvent) {
     this.props.onValueChange(domEvent.target.value);
@@ -114,11 +99,41 @@ class ErrorableTextInput extends React.Component {
 				</section>
 
 				<section>
+					<h2>Nesting components</h2>
+					<p>A component can be rendered by calling it from within another component.</p>
+					<pre><code class="hljs javascript" data-trim>
+class SocialSecurityNumber extends React.Component {
+  render() {
+    return (
+      &lt;ErrorableTextInput value={this.props.ssn}/&gt;
+    );
+  }
+}
+					</code></pre>
+				</section>
+
+				<section>
+					<h2>Component Hierarchy</h2>
+					<p>Helps identify which components you'll need and how they'll be used.</p>
+					<p>HCA's component hierarchy:</p>
+					<pre><code class="hljs" data-trim contenteditable>
+- HealthCareApp
+  - Nav
+  - Section
+    - Questions (e.g., SocialSecurityNumber)
+      - Form elements (e.g., ErrorableTextInput)
+    - Form elements
+  - ProgressButton
+					</code></pre>
+					<p>This naturally corresponds with the structure of our application.</p>
+				</section>
+
+				<section>
 					<h2>JSX</h2>
-					<p>Syntax for writing JS within components.</p>
-					<p>Similar to HTML, where components can also be tags.</p>
-					<p>Most HTML attributes are the same.</p>
-					<p>Reserved words ("class" and "html") are replaced ("className" and "htmlFor").</p>
+					<p>JS syntax for rendering content in the DOM.</p>
+					<p>Similar to HTML.</p>
+					<p>Reserved words (<code>class</code> and <code>for</code>) are replaced (<code>className</code> and <code>htmlFor</code>).</p>
+					<p>Components are also tags!</p>
 					<pre><code class="hljs javascript" data-trim>
 render() {
   return (
@@ -131,9 +146,47 @@ render() {
 				</section>
 
 				<section>
+					<h2>2 sources of data</h2>
+					<ol>
+						<li><strong>State</strong></li>
+						<ul>
+							<li>Mutable data</li>
+							<li>Owned by the component in which it is set and not directly accessible by other components.</li>
+						</ul>
+						<li><strong>Props</strong></li>
+						<ul>
+							<li>Immutable data</li>
+							<li>Attached to a particular component and passed down by the parent component.</li>
+						</ul>
+					</ol>
+				</section>
+
+				<section>
+					<h2>State</h2>
+					<p>In HCA, it's a store of our model data in a JSON object.</p>
+					<pre><code class="hljs javascript" data-trim contenteditable>
+nameAndGeneralInformation: {
+  fullName: {
+    first: 'William',
+    middle: null,
+    last: 'Shakespeare',
+    suffix: null,
+  },
+  mothersMaidenName: 'Arden',
+  socialSecurityNumber: '555-55-5555',
+  gender: 'M',
+  dateOfBirth: {
+    month: 4,
+    day: 23,
+    year: 1564,
+  }
+}
+					</code></pre>
+				</section>
+
+				<section>
 					<h2>Props</h2>
-					<p>Props contain immutable data.</p>
-					<p>Props are attached to a particular component, and are passed down by the parent component.</p>
+					<p>Data from state is passed down through props from parent components to nested components.</p>
 					<pre><code class="hljs javascript" data-trim contenteditable>
 class NameAndGeneralInfo extends React.Component {
   render() {
@@ -154,110 +207,68 @@ class SocialSecurityNumber extends React.Component {
 				</section>
 
 				<section>
-					<h2>State</h2>
-					<p>State contains mutable data.</p>
-					<p>It is owned by the component in which it is set.</p>
-					<p><code>this.state</code> returns the component's state.</p>
-					<p><code>this.setState()</code> updates state and calls a re-render of the component, which updates props for child components that may be dependent on data from state.</p>
-				</section>
-
-				<section>
-					<h2>What should be stored in state?</h2>
-					<p></p>
-				</section>
-
-				<section>
 					<h2>Data Flow</h2>
-					<p></p>
+					<p>React convention is <strong>one-way data flow</strong>:</p>
+					<ol>
+						<li>User triggers a change to a form element</li>
+						<li>State is updated with the change</li>
+						<li>Props are passed down with new data</li>
+						<li>The form element displays the data passed to it through props</li>
+					</ol>
 				</section>
 
 				<section>
-					<h2>Clever Quotes</h2>
-					<p>
-						These guys come in two forms, inline: <q cite="http://searchservervirtualization.techtarget.com/definition/Our-Favorite-Technology-Quotations">
-						&ldquo;The nice thing about standards is that there are so many to choose from&rdquo;</q> and block:
-					</p>
-					<blockquote cite="http://searchservervirtualization.techtarget.com/definition/Our-Favorite-Technology-Quotations">
-						&ldquo;For years there has been a theory that millions of monkeys typing at random on millions of typewriters would
-						reproduce the entire works of Shakespeare. The Internet has proven this theory to be untrue.&rdquo;
-					</blockquote>
+					<h2>Best practices of state</h2>
+					<p>Keep as many components as possible stateless.</p>
+					<p>State should contain data that, once changed, will trigger a UI update.</p>
+					<p>Keep the minimal amount of data needed to represent your UI in state.</p>
+					<p>Do not store computed data in state.</p>
+					<p>Do not store duplicated data from props in state.</p>
 				</section>
 
 				<section>
-					<h2>Intergalactic Interconnections</h2>
-					<p>
-						You can link between slides internally,
-						<a href="#/2/3">like this</a>.
-					</p>
-				</section>
+					<h2>Redux</h2>
+					<p>Helps us manage state</p>
+					<p>Only way to update state is to dispatch an action</p>
+					<pre><code class="hljs javascript" data-trim>
+render() {
+  return (
+    &lt;SocialSecurityNumber ssn={this.props.data.socialSecurityNumber}
+      onValueChange={(update) => {this.props.onStateChange('ssn', update);}}/&gt;
+  );
+}
 
-				<section>
-					<h2>Speaker View</h2>
-					<p>There's a <a href="https://github.com/hakimel/reveal.js#speaker-notes">speaker view</a>. It includes a timer, preview of the upcoming slide as well as your speaker notes.</p>
-					<p>Press the <em>S</em> key to try it out.</p>
-
-					<aside class="notes">
-						Oh hey, these are some notes. They'll be hidden in your presentation, but you can see them if you open the speaker notes window (hit 's' on your keyboard).
-					</aside>
-				</section>
-
-				<section>
-					<h2>Export to PDF</h2>
-					<p>Presentations can be <a href="https://github.com/hakimel/reveal.js#pdf-export">exported to PDF</a>, here's an example:</p>
-					<iframe src="https://www.slideshare.net/slideshow/embed_code/42840540" width="445" height="355" frameborder="0" marginwidth="0" marginheight="0" scrolling="no" style="border:3px solid #666; margin-bottom:5px; max-width: 100%;" allowfullscreen> </iframe>
-				</section>
-
-				<section>
-					<h2>Global State</h2>
-					<p>
-						Set <code>data-state="something"</code> on a slide and <code>"something"</code>
-						will be added as a class to the document element when the slide is open. This lets you
-						apply broader style changes, like switching the page background.
-					</p>
-				</section>
-
-				<section data-state="customevent">
-					<h2>State Events</h2>
-					<p>
-						Additionally custom events can be triggered on a per slide basis by binding to the <code>data-state</code> name.
-					</p>
-					<pre><code class="javascript" data-trim contenteditable style="font-size: 18px;">
-Reveal.addEventListener( 'customevent', function() {
-	console.log( '"customevent" has fired' );
-} );
+function mapDispatchToProps(dispatch) {
+  return {
+    onStateChange: (field, update) => {
+      dispatch(
+        veteranUpdateField(['nameAndGeneralInformation', field], update)
+      );
+    }
+  };
+}
 					</code></pre>
 				</section>
 
 				<section>
-					<h2>Take a Moment</h2>
-					<p>
-						Press B or . on your keyboard to pause the presentation. This is helpful when you're on stage and want to take distracting slides off the screen.
-					</p>
+					<h2>Things that tripped me up at first</h2>
+					<p>What should be stored in state</p>
+					<p>Form validations</p>
+					<p>Value of a form element is just a representation of data stored in state.</p>
 				</section>
 
 				<section>
 					<h2>Learn more!</h2>
-					<a href="https://facebook.github.io/react/docs/tutorial.html">React tutorial</a>
-					<a href="http://redux.js.org/index.html">Redux docs</a>
+					<p><a href="https://facebook.github.io/react/docs/tutorial.html">React tutorial</a> --> This is awesome</p>
+					<p><a href="http://redux.js.org/index.html">Redux docs</a></p>
 				</section>
-
-				<section style="text-align: left;">
-					<h1>THE END</h1>
-					<p>
-						- <a href="http://slides.com">Try the online editor</a> <br>
-						- <a href="https://github.com/hakimel/reveal.js">Source code &amp; documentation</a>
-					</p>
-				</section>
-
 			</div>
-
 		</div>
 
 		<script src="lib/js/head.min.js"></script>
 		<script src="js/reveal.js"></script>
 
 		<script>
-
 			// Full list of configuration options available at:
 			// https://github.com/hakimel/reveal.js#configuration
 			Reveal.initialize({
@@ -278,8 +289,6 @@ Reveal.addEventListener( 'customevent', function() {
 					{ src: 'plugin/notes/notes.js', async: true }
 				]
 			});
-
 		</script>
-
 	</body>
 </html>
