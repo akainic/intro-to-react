@@ -34,7 +34,16 @@
 				<section>
 					<h1>Introduction to React</h1>
 					<h3>And how we're using it!</h3>
-					<blockquote class="title-page-blockquote" cite="https://facebook.github.io/react/index.html">“A JavaScript library for building user interfaces”</blockquote>
+				</section>
+
+				<section>
+					<h2>About React</h2>
+					<blockquote class="title-page-blockquote" cite="https://facebook.github.io/react/index.html">
+						“A JavaScript library for building user interfaces”
+					</blockquote>
+					<blockquote class="title-page-blockquote" cite="https://facebook.github.io/react/index.html">
+						The V in MVC
+					</blockquote>
 				</section>
 
 				<section>
@@ -66,10 +75,9 @@
 
 				<section>
 					<h2>Components</h2>
-					<p>An abstraction of HTML and JS into reusable, composable units that define their own behavior and know how to render themselves.</p>
-					<p>Bundles together necessarily dependent behavior and display-logic.</p>
 					<p>The building blocks of your React UI.</p>
-					<p>Everything that receives data or responds to state changes should probably be a component</p>
+					<p>An abstraction of HTML and JS into reusable, composable units.</p>
+					<p>Bundles together necessarily dependent behavior and display-logic.</p>
 				</section>
 
 				<section>
@@ -99,7 +107,7 @@ class ErrorableTextInput extends React.Component {
 				</section>
 
 				<section>
-					<h2>Nesting components</h2>
+					<h2>Rendering components</h2>
 					<p>A component can be rendered by calling it from within another component.</p>
 					<pre><code class="hljs javascript" data-trim>
 class SocialSecurityNumber extends React.Component {
@@ -133,7 +141,7 @@ class SocialSecurityNumber extends React.Component {
 					<p>JS syntax for rendering content in the DOM.</p>
 					<p>Similar to HTML.</p>
 					<p>Reserved words (<code>class</code> and <code>for</code>) are replaced (<code>className</code> and <code>htmlFor</code>).</p>
-					<p>Components are also tags!</p>
+					<p>Components look like tags</p>
 					<pre><code class="hljs javascript" data-trim>
 render() {
   return (
@@ -163,7 +171,7 @@ render() {
 
 				<section>
 					<h2>State</h2>
-					<p>In HCA, it's a store of our model data in a JSON object.</p>
+					<p>Example from HCA: a store of our model data in a JSON object.</p>
 					<pre><code class="hljs javascript" data-trim contenteditable>
 nameAndGeneralInformation: {
   fullName: {
@@ -251,15 +259,8 @@ function mapDispatchToProps(dispatch) {
 				</section>
 
 				<section>
-					<h2>Things that tripped me up at first</h2>
-					<p>What should be stored in state</p>
-					<p>Form validations</p>
-					<p>Value of a form element is just a representation of data stored in state.</p>
-				</section>
-
-				<section>
 					<h2>Learn more!</h2>
-					<p><a href="https://facebook.github.io/react/docs/tutorial.html">React tutorial</a> --> This is awesome</p>
+					<p><a href="https://facebook.github.io/react/docs/tutorial.html">React tutorial</a></p>
 					<p><a href="http://redux.js.org/index.html">Redux docs</a></p>
 				</section>
 			</div>
