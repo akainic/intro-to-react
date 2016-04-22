@@ -77,7 +77,7 @@
 					<h2>Components</h2>
 					<p>The building blocks of your React UI.</p>
 					<p>An abstraction of HTML and JS into reusable, composable units.</p>
-					<p>Bundles together necessarily dependent behavior and display-logic.</p>
+					<p>Bundles together necessarily dependent behavior and display logic.</p>
 				</section>
 
 				<section>
@@ -141,7 +141,7 @@ class SocialSecurityNumber extends React.Component {
 					<p>JS syntax for rendering content in the DOM.</p>
 					<p>Similar to HTML.</p>
 					<p>Reserved words (<code>class</code> and <code>for</code>) are replaced (<code>className</code> and <code>htmlFor</code>).</p>
-					<p>Components look like tags</p>
+					<p>Components look like HTML tags</p>
 					<pre><code class="hljs javascript" data-trim>
 render() {
   return (
@@ -159,7 +159,7 @@ render() {
 						<li><strong>State</strong></li>
 						<ul>
 							<li>Mutable data</li>
-							<li>Owned by the component in which it is set and not directly accessible by other components.</li>
+							<li>Set in a particular component and not directly accessible by other components.</li>
 						</ul>
 						<li><strong>Props</strong></li>
 						<ul>
@@ -228,8 +228,8 @@ class SocialSecurityNumber extends React.Component {
 				<section>
 					<h2>Best practices of state</h2>
 					<p>Keep as many components as possible stateless.</p>
-					<p>State should contain data that, once changed, will trigger a UI update.</p>
 					<p>Keep the minimal amount of data needed to represent your UI in state.</p>
+					<p>State should contain data that, once changed, will trigger a UI update.</p>
 					<p>Do not store computed data in state.</p>
 					<p>Do not store duplicated data from props in state.</p>
 				</section>
